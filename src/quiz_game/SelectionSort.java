@@ -1,8 +1,6 @@
-package practice;
+package quiz_game;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
@@ -32,70 +30,55 @@ public class SelectionSort {
 	public static int[] selectionSort(int choice, int[] arr) {
 		
 		if(choice ==1) {
-			int[] ascArr = new int[10];
 			
-			int cnt = 0;
-			
-			
-			
-			for(int i=0; i<arr.length;i++) {
-				ascArr[i] = arr[0];
-				int ind=0;
+			for (int i=0 ; i<arr.length-1;i++) {
 				
-				for(int j=0; j<arr.length-cnt; j++) {
-					if(ascArr[i]>arr[j]) {
-						ascArr[i] = arr[j];
+				int temp = arr[i];
+				int ind = 0;
+				boolean ch = false;
+				for (int j=i ; j<arr.length;j++) {
+					if(temp>arr[j]) {
+						temp = arr[j];
 						ind = j;
+						ch = true;
 					}
 				}
-				int rep = arr[ind];
-				
-				for (int k = ind; k<arr.length-cnt-1;k++) {
-					arr[k] = arr[k+1];
+				if(ch==true) {
+					arr[ind] = arr[i];
+					arr[i] = temp;
 					
 				}
-				cnt++;
-				arr[arr.length-1] = rep;
-				System.out.printf("Sort%d번 진행 :", i);
-				showArr(ascArr);
+				
+				System.out.printf("%d번째 정렬 :", i+1);
+				showArr(arr);
 				
 			}
-			
-			return ascArr;
+			return arr;
 		}
 		else {
-			
-			int[] ascArr = new int[10];
+			for (int i=0 ; i<arr.length-1;i++) {
 
-			int cnt = 0;
-
-			for(int i=0; i<arr.length;i++) {
-				ascArr[i] = arr[0];
-				int ind=0;
-
-				for(int j=0; j<arr.length-cnt; j++) {
-					if(ascArr[i]<arr[j]) {
-						ascArr[i] = arr[j];
+				int temp = arr[i];
+				int ind = 0;
+				boolean ch = false;
+				for (int j=i ; j<arr.length;j++) {
+					if(temp<arr[j]) {
+						temp = arr[j];
 						ind = j;
+						ch = true;
 					}
 				}
-				int rep = arr[ind];
-
-				for (int k = ind; k<arr.length-cnt-1;k++) {
-					arr[k] = arr[k+1];
-
+				if(ch == true) {
+					arr[ind] = arr[i];
+					arr[i] = temp;
 				}
-				cnt++;
-				arr[arr.length-1] = rep;
-				System.out.printf("Sort%d번 진행 :", i);
-				showArr(ascArr);
-
+				
+				System.out.printf("%d번째 정렬 :", i+1);
+				showArr(arr);
 			}
-			
-			return ascArr;
+			return arr;
 		}
 	}
-	
 	
 	public static void showArr(int[] arr) {
 		
@@ -116,19 +99,12 @@ public class SelectionSort {
 		System.out.print("오름차순1, 내림차순2 :");
 		int choice = scan.nextInt();
 		arr = selectionSort(choice, arr);
-		showArr(arr);
 		
 	}
 	
-	
 	public static void main(String[] args) {
-
 		
 		sort();
 		
-		
 	}
-	
-
-	
 }
